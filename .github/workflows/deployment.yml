@@ -47,6 +47,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{secrets.HETZNER_HOST}}
+          username: ${{secrets.HETZNER_USERNAME}}
           key: ${{secrets.HETZNER_PRIVATE_KEY}}
           script: |
             docker pull ${{secrets.DOCKER_USERNAME}}/questionapp:latest
