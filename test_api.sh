@@ -33,7 +33,7 @@ curl -u admin:4dm1N -X 'POST' \
 }'
 
 # Test the create_question endpoint
-echo "Testing create_question endpoint"
+echo "Testing create_question endpoint test"
 curl -u admin:4dm1N -X 'POST' \
   "$BASE_URL/questions/" \
   -H 'accept: application/json' \
