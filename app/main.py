@@ -17,14 +17,13 @@ def get_db():
         yield db
     finally:
         db.close()
-        
-    
+
 
 @app.get("/questions/", response_model=List[schemas.Question])
 def read_questions(use: str, subjects: List[str], limit: int = 10, db: Session = Depends(get_db), username: str = Depends(auth.get_current_user)):
     """
     Retrieve a list of questions.
-    
+
     """
     questions = crud.get_questions(db, use, subjects, limit)
     return questions
@@ -34,8 +33,13 @@ def read_questions(use: str, subjects: List[str], limit: int = 10, db: Session =
 def create_question(question: schemas.QuestionCreate, db: Session = Depends(get_db), username: str = Depends(auth.get_current_user)):
     """
     Create a new question (admin only).
-    
+
     """
     if username != 'admin':
         raise HTTPException(status_code=403, detail="Not authorized")
     return crud.create_question(db, question)
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
