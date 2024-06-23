@@ -49,6 +49,7 @@ jobs:
           host: ${{secrets.HETZNER_HOST}}
           username: ${{secrets.HETZNER_USERNAME}}
           key: ${{secrets.HETZNER_PRIVATE_KEY}}
+          port: 22
           script: |
             docker pull ${{secrets.DOCKER_USERNAME}}/questionapp:latest
             docker stop questionapp || true
